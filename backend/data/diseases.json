@@ -1,0 +1,112 @@
+[
+  {
+    "code": "T2D",
+    "name": "Type 2 Diabetes",
+    "name_es": "Diabetes tipo 2",
+    "category": "Metabólica",
+    "baseline_risk": 0.11,
+    "baseline_label": "Prevalencia global estimada en adultos (IDF Diabetes Atlas 2021)",
+    "description_es": "Enfermedad metabólica crónica caracterizada por resistencia a la insulina y disfunción de la célula beta pancreática. Es la ENT con crecimiento más acelerado en países de ingresos bajos y medios.",
+    "modifiable": ["Tabaquismo", "Actividad física", "Dieta", "IMC", "Sueño", "Estrés", "Contaminación del aire"]
+  },
+  {
+    "code": "CAD",
+    "name": "Coronary Artery Disease",
+    "name_es": "Enfermedad coronaria",
+    "category": "Cardiovascular",
+    "baseline_risk": 0.05,
+    "baseline_label": "Riesgo de evento coronario a 10 años, población adulta general (aprox.)",
+    "description_es": "Aterosclerosis de las arterias coronarias: primera causa de muerte mundial. El 80% de los eventos prematuros son prevenibles con factores de estilo de vida (INTERHEART).",
+    "modifiable": ["Tabaquismo", "Actividad física", "Dieta", "IMC", "Sueño", "Alcohol", "Estrés", "Contaminación del aire"]
+  },
+  {
+    "code": "HTN",
+    "name": "Hypertension",
+    "name_es": "Hipertensión arterial",
+    "category": "Cardiovascular",
+    "baseline_risk": 0.31,
+    "baseline_label": "Prevalencia global en adultos (OMS, ~31%)",
+    "description_es": "Presión arterial persistentemente elevada; principal factor de riesgo modificable para ictus, cardiopatía y enfermedad renal. Casi la mitad de los adultos hipertensos la desconocen.",
+    "modifiable": ["Tabaquismo", "Actividad física", "Dieta", "IMC", "Sueño", "Alcohol", "Estrés", "Contaminación del aire"]
+  },
+  {
+    "code": "OBES",
+    "name": "Obesity",
+    "name_es": "Obesidad",
+    "category": "Metabólica",
+    "baseline_risk": 0.16,
+    "baseline_label": "Prevalencia global de obesidad en adultos (OMS 2022)",
+    "description_es": "Acumulación anormal de grasa corporal (IMC ≥ 30). Determina mayor riesgo de diabetes, cáncer y cardiopatía. La interacción FTO × actividad física demuestra que el destino genético no es inmutable.",
+    "modifiable": ["Actividad física", "Dieta", "Sueño", "Estrés"]
+  },
+  {
+    "code": "ALZ",
+    "name": "Alzheimer's Disease",
+    "name_es": "Enfermedad de Alzheimer",
+    "category": "Neurológica",
+    "baseline_risk": 0.11,
+    "baseline_label": "Riesgo acumulado desde los 65 años (aprox. 11%)",
+    "description_es": "Demencia neurodegenerativa progresiva. El alelo APOE ε4 es el factor genético más potente, pero el ejercicio y la dieta atenúan sustancialmente el riesgo incluso en portadores.",
+    "modifiable": ["Actividad física", "Dieta", "Tabaquismo", "Sueño", "Alcohol", "Estrés"]
+  },
+  {
+    "code": "BREAST",
+    "name": "Breast Cancer",
+    "name_es": "Cáncer de mama",
+    "category": "Oncológica",
+    "baseline_risk": 0.12,
+    "baseline_label": "Riesgo de vida en mujeres (American Cancer Society, aprox.)",
+    "description_es": "Cáncer más frecuente en mujeres a nivel mundial. Las variantes comunes (FGFR2, TOX3) modifican el riesgo modestamente; el estilo de vida modula la expresión de ese riesgo.",
+    "modifiable": ["Actividad física", "Dieta", "IMC", "Alcohol", "Tabaquismo"]
+  },
+  {
+    "code": "CRC",
+    "name": "Colorectal Cancer",
+    "name_es": "Cáncer colorrectal",
+    "category": "Oncológica",
+    "baseline_risk": 0.044,
+    "baseline_label": "Riesgo de vida, población general (aprox. 4.4%)",
+    "description_es": "Cáncer del colon/recto estrechamente ligado a dieta, sedentarismo y tabaquismo. La fibra, la actividad física y el cribaje preventivo reducen el riesgo de forma demostrativa.",
+    "modifiable": ["Tabaquismo", "Actividad física", "Dieta", "IMC", "Alcohol", "Sueño"]
+  },
+  {
+    "code": "PROST",
+    "name": "Prostate Cancer",
+    "name_es": "Cáncer de próstata",
+    "category": "Oncológica",
+    "baseline_risk": 0.13,
+    "baseline_label": "Riesgo de vida en hombres (aprox. 13%)",
+    "description_es": "Cáncer más frecuente en hombres. Incluye variantes de efecto fuerte y raras (HOXB13) que ilustran la arquitectura genética completa: comunes-débiles y raras-fuertes.",
+    "modifiable": ["Dieta", "IMC", "Tabaquismo", "Actividad física"]
+  },
+  {
+    "code": "LUNG",
+    "name": "Lung Cancer",
+    "name_es": "Cáncer de pulmón",
+    "category": "Oncológica",
+    "baseline_risk": 0.06,
+    "baseline_label": "Riesgo acumulado en población general; en fumadores intensos puede superar el 15-20%",
+    "description_es": "El ejemplo más dramático de interacción gen-ambiente: variantes en CHRNA5 amplifican el riesgo principalmente en fumadores. Dejar de fumar es la intervención preventiva más poderosa en medicina.",
+    "modifiable": ["Tabaquismo", "Actividad física", "Contaminación del aire", "Dieta"]
+  },
+  {
+    "code": "ASTHMA",
+    "name": "Asthma",
+    "name_es": "Asma",
+    "category": "Respiratoria",
+    "baseline_label": "Prevalencia global estimada (aprox. 10%)",
+    "baseline_risk": 0.10,
+    "description_es": "Enfermedad inflamatoria crónica de las vías aéreas. El locus 17q21 (GSDMB/ORMDL3) es el más replicado, con interacción documentada con infecciones virales infantiles.",
+    "modifiable": ["Tabaquismo", "Contaminación del aire", "Dieta", "Actividad física"]
+  },
+  {
+    "code": "CKD",
+    "name": "Chronic Kidney Disease",
+    "name_es": "Enfermedad renal crónica",
+    "category": "Renal",
+    "baseline_risk": 0.10,
+    "baseline_label": "Prevalencia global estimada (aprox. 10%)",
+    "description_es": "Pérdida progresiva de función renal. Incluye APOL1 G1, variante de gran efecto en ascendencia africana occidental: un caso de estudio esencial de equidad en medicina genómica.",
+    "modifiable": ["Tabaquismo", "IMC", "Contaminación del aire", "Dieta", "Alcohol"]
+  }
+]

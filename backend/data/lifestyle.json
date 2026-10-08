@@ -1,0 +1,136 @@
+{
+  "factors": {
+    "smoking": {
+      "label": "Tabaquismo",
+      "evidence": "IARC Monographs (tabaco: carcinógeno Grupo 1); US Surgeon General 2014; INTERHEART (Lancet 2004)",
+      "options": {
+        "nunca": {"label": "Nunca fumador", "multipliers": {}},
+        "exfumador": {"label": "Exfumador (>1 año)", "multipliers": {"CAD": 1.3, "LUNG": 2.0, "T2D": 1.1, "CRC": 1.1, "CKD": 1.1}},
+        "fumador": {"label": "Fumador actual", "multipliers": {"T2D": 1.4, "CAD": 2.5, "LUNG": 15.0, "CRC": 1.25, "HTN": 1.1, "PROST": 1.1, "CKD": 1.3, "ALZ": 1.3, "BREAST": 1.15, "ASTHMA": 1.2, "OBES": 1.05}}
+      }
+    },
+    "activity": {
+      "label": "Actividad física",
+      "evidence": "Diabetes Prevention Program (NEJM 2002); INTERHEART; Moore et al., Lancet 2012 ((tiempo libre) actividad y longevidad)",
+      "options": {
+        "sedentario": {"label": "Sedentario (<30 min/semana)", "multipliers": {"T2D": 1.3, "CAD": 1.3, "HTN": 1.2, "OBES": 1.3, "ALZ": 1.3, "CRC": 1.2, "BREAST": 1.1, "LUNG": 1.1, "ASTHMA": 1.05}},
+        "ligero": {"label": "Ligero (30-75 min/semana)", "multipliers": {}},
+        "moderado": {"label": "Moderado (75-150 min/semana)", "multipliers": {"T2D": 0.8, "CAD": 0.8, "HTN": 0.92, "OBES": 0.85, "ALZ": 0.8, "CRC": 0.85, "BREAST": 0.92}},
+        "intenso": {"label": "Activo (≥150 min/semana)", "multipliers": {"T2D": 0.65, "CAD": 0.7, "HTN": 0.85, "OBES": 0.7, "ALZ": 0.65, "CRC": 0.75, "BREAST": 0.85, "LUNG": 0.75, "ASTHMA": 0.9, "CKD": 0.9}}
+      }
+    },
+    "diet": {
+      "label": "Patrón alimentario",
+      "evidence": "PREDIMED (NEJM 2013/2018): dieta mediterránea -30% eventos cardiovasculares y -30% diabetes; MIND diet y declive cognitivo",
+      "options": {
+        "occidental": {"label": "Occidental (ultraprocesado, carnes, azúcar)", "multipliers": {"T2D": 1.5, "CAD": 1.4, "HTN": 1.3, "CRC": 1.3, "OBES": 1.5, "BREAST": 1.15, "ALZ": 1.2, "CKD": 1.2}},
+        "mixta": {"label": "Mixta", "multipliers": {}},
+        "prudente": {"label": "Prudente (verduras, frutas, granos)", "multipliers": {"T2D": 0.85, "CAD": 0.85, "HTN": 0.9, "CRC": 0.85, "OBES": 0.85, "ALZ": 0.85}},
+        "mediterranea": {"label": "Mediterránea (aceite de oliva, frutos secos, pescado)", "multipliers": {"T2D": 0.7, "CAD": 0.7, "HTN": 0.85, "CRC": 0.85, "BREAST": 0.9, "ALZ": 0.65, "LUNG": 0.9, "CKD": 0.85, "OBES": 0.8}}
+      }
+    },
+    "alcohol": {
+      "label": "Alcohol",
+      "evidence": "OMS: no existe nivel seguro de alcohol; Global Burden of Disease (Lancet 2018); relación con ≥7 cánceres (IARC)",
+      "options": {
+        "ninguno": {"label": "No consumo", "multipliers": {}},
+        "moderado": {"label": "Moderado (≤1 bebida/día)", "multipliers": {"HTN": 1.1, "BREAST": 1.07, "CRC": 1.08}},
+        "alto": {"label": "Alto (>2 bebidas/día)", "multipliers": {"HTN": 1.4, "CAD": 1.3, "BREAST": 1.3, "CRC": 1.25, "LUNG": 1.15, "T2D": 1.15, "ALZ": 1.15, "CKD": 1.2, "OBES": 1.15}}
+      }
+    },
+    "sleep": {
+      "label": "Sueño",
+      "evidence": "Meta-análisis Cappuccio et al.: sueño <6 h → +20% diabetes, +15% cardiopatía; sueño y clearance de amiloide cerebral (Xie et al., Science 2013)",
+      "options": {
+        "corto": {"label": "Corto (<6 h)", "multipliers": {"T2D": 1.2, "CAD": 1.15, "HTN": 1.1, "OBES": 1.2, "ALZ": 1.15}},
+        "adecuado": {"label": "Adecuado (7-8 h)", "multipliers": {}},
+        "largo": {"label": "Excesivo (>9 h)", "multipliers": {"T2D": 1.1, "CAD": 1.1, "HTN": 1.05, "OBES": 1.1}}
+      }
+    },
+    "stress": {
+      "label": "Estrés crónico",
+      "evidence": "INTERHEART: estrés psicosocial OR ~2.5 para infarto (ajustado ~1.4); eje cortisol-hipertensión-glucemia",
+      "options": {
+        "bajo": {"label": "Bajo", "multipliers": {}},
+        "medio": {"label": "Medio", "multipliers": {"HTN": 1.1, "CAD": 1.1, "T2D": 1.1}},
+        "alto": {"label": "Alto (sostenido)", "multipliers": {"HTN": 1.25, "CAD": 1.4, "T2D": 1.2, "ALZ": 1.15, "OBES": 1.1}}
+      }
+    }
+  },
+  "bmi_categories": {
+    "evidence": "Emerging Risk Factors Collaboration (Lancet 2011): IMC y riesgo de enfermedad específica; Global BMI Mortality Collaboration (Lancet 2016)",
+    "categories": [
+      {"key": "bajo", "label": "Bajo peso (IMC <18.5)", "range": [0, 18.5], "multipliers": {}},
+      {"key": "normal", "label": "Normopeso (18.5-24.9)", "range": [18.5, 25], "multipliers": {}},
+      {"key": "sobrepeso", "label": "Sobrepeso (25-29.9)", "range": [25, 30], "multipliers": {"T2D": 2.4, "CAD": 1.3, "HTN": 1.5, "BREAST": 1.12, "CRC": 1.15, "OBES": 1.5, "CKD": 1.4, "ALZ": 1.1}},
+      {"key": "obesidad", "label": "Obesidad (30-34.9)", "range": [30, 35], "multipliers": {"T2D": 5.0, "CAD": 1.8, "HTN": 2.2, "BREAST": 1.2, "CRC": 1.3, "OBES": 3.5, "CKD": 1.8, "ALZ": 1.2, "LUNG": 1.1, "ASTHMA": 1.2}},
+      {"key": "mobida", "label": "Obesidad mórbida (≥35)", "range": [35, 99], "multipliers": {"T2D": 10.0, "CAD": 2.5, "HTN": 3.0, "BREAST": 1.25, "CRC": 1.4, "OBES": 5.0, "CKD": 2.5, "ALZ": 1.3, "LUNG": 1.15, "ASTHMA": 1.3}}
+    ]
+  },
+  "pm25_categories": {
+    "evidence": "Guía OMS de Calidad del Aire 2021 (umbral anual 5 µg/m³); Pope et al. (circulación); Chen & Hoek BMJ 2020: +10 µg/m³ → +6-12% cardiovascular",
+    "categories": [
+      {"key": "who", "label": "≤5 µg/m³ (guía OMS)", "range": [0, 5.1], "multipliers": {}},
+      {"key": "bajo", "label": "5-15 µg/m³", "range": [5.1, 15.1], "multipliers": {"CAD": 1.02, "LUNG": 1.05, "HTN": 1.02, "T2D": 1.02, "CKD": 1.02}},
+      {"key": "medio", "label": "15-35 µg/m³", "range": [15.1, 35.1], "multipliers": {"CAD": 1.08, "LUNG": 1.15, "HTN": 1.06, "T2D": 1.06, "CKD": 1.08, "ASTHMA": 1.15, "CRC": 1.05}},
+      {"key": "alto", "label": ">35 µg/m³", "range": [35.1, 999], "multipliers": {"CAD": 1.18, "LUNG": 1.3, "HTN": 1.12, "T2D": 1.12, "CKD": 1.15, "ASTHMA": 1.3, "CRC": 1.1, "BREAST": 1.05}}
+    ]
+  },
+  "fruit_veg_adjustment": {
+    "evidence": "Meta-análisis Aune et al. (2017): 800 g/día de frutas y verduras → -24% riesgo cardiovascular; <200 g/día pierde casi toda la protección",
+    "low_threshold": 3,
+    "optimal": 5,
+    "low_penalty": {"CAD": 1.05, "T2D": 1.05, "CRC": 1.08, "LUNG": 1.05},
+    "optimal_bonus": {"CAD": 0.95, "T2D": 0.95, "CRC": 0.92, "LUNG": 0.95, "BREAST": 0.97}
+  },
+  "interactions": [
+    {
+      "id": "fto_pa",
+      "title": "FTO × Actividad física",
+      "diseases": ["OBES", "T2D"],
+      "condition": "Portador del alelo de riesgo en rs9939609 (FTO) con actividad física alta (≥150 min/semana)",
+      "effect": "El efecto del alelo FTO sobre el IMC se atenúa ~30%",
+      "source": "Kilpeläinen et al., PLoS Medicine 2011 (meta-análisis de 218,166 adultos)"
+    },
+    {
+      "id": "apoe_pa",
+      "title": "APOE ε4 × Ejercicio",
+      "diseases": ["ALZ"],
+      "condition": "Portador de rs429358 C (ε4) físicamente activo",
+      "effect": "Riesgo de deterioro cognitivo reducido ~40% frente a portadores sedentarios",
+      "source": "Rovio et al. 2005; meta-análisis de portadores ε4 activos"
+    },
+    {
+      "id": "chrna5_smoke",
+      "title": "CHRNA5 × Tabaquismo",
+      "diseases": ["LUNG"],
+      "condition": "Portador de rs16969968 A que nunca fumó",
+      "effect": "Las variantes de dependencia a la nicotina apenas modifican el riesgo: el 80-90% del cáncer de pulmón es atribuible al humo",
+      "source": "Le Marchand et al. 2008; IARC"
+    },
+    {
+      "id": "tcf7l2_dpp",
+      "title": "TCF7L2 × Intervención de estilo de vida",
+      "diseases": ["T2D"],
+      "condition": "Cualquier genotipo TCF7L2 bajo intervención intensiva de estilo de vida",
+      "effect": "El Diabetes Prevention Program redujo la progresión a diabetes un 58%: eficaz en TODOS los genotipos",
+      "source": "Knowler et al., NEJM 2002; Florez et al., NEJM 2007"
+    },
+    {
+      "id": "p21_smoke",
+      "title": "9p21 × Tabaquismo",
+      "diseases": ["CAD"],
+      "condition": "Portador del alelo rs1333049 C que fuma",
+      "effect": "Interacción aditiva documentada: el riesgo combinado excede la suma de ambos factores",
+      "source": "RAND-36 / McPherson & Davies 2012; CARDIoGRAMplusC4D"
+    }
+  ],
+  "lifestyle_scores": {
+    "tabaquismo": {"nunca": 100, "exfumador": 75, "fumador": 20},
+    "actividad": {"sedentario": 20, "ligero": 45, "moderado": 70, "intenso": 95},
+    "dieta": {"occidental": 20, "mixta": 55, "prudente": 75, "mediterranea": 95},
+    "alcohol": {"ninguno": 100, "moderado": 70, "alto": 25},
+    "sueño": {"corto": 40, "adecuado": 100, "largo": 70},
+    "estres": {"bajo": 90, "medio": 50, "alto": 15}
+  }
+}

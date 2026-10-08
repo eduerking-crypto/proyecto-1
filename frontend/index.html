@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050a14">
+  <meta name="description" content="GENOMIND — Plataforma libre de inteligencia genómica que combina genética, ambiente y estilo de vida para prevenir enfermedades no transmisibles. Agentes científicos, datos GWAS reales y herramientas estadísticas para todos.">
+  <title>GENOMIND — Inteligencia Genómica Abierta</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#/" aria-label="GENOMIND, inicio">
+        <svg class="logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#34d399"/>
+            </linearGradient>
+          </defs>
+          <circle cx="24" cy="24" r="22" fill="none" stroke="url(#lg)" stroke-width="2.5"/>
+          <path d="M17 12c0 8 14 8 14 16s-14 8-14 8" fill="none" stroke="url(#lg)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M31 12c0 8-14 8-14 16s14 8 14 8" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" opacity=".55"/>
+          <line x1="19" y1="17" x2="29" y2="17" stroke="#34d399" stroke-width="2"/>
+          <line x1="19" y1="24" x2="29" y2="24" stroke="#34d399" stroke-width="2"/>
+          <line x1="19" y1="31" x2="29" y2="31" stroke="#34d399" stroke-width="2"/>
+        </svg>
+        <span class="brand-name">GENO<b>MIND</b></span>
+      </a>
+      <nav class="tabs" id="mainNav" aria-label="Secciones principales">
+        <a href="#/" class="tab" data-view="home">Inicio</a>
+        <a href="#/genoma" class="tab" data-view="genoma">Genoma</a>
+        <a href="#/vida" class="tab" data-view="vida">Gen × Ambiente</a>
+        <a href="#/alimentos" class="tab" data-view="alimentos">Alimentos</a>
+        <a href="#/estadistica" class="tab" data-view="estadistica">Estadística</a>
+        <a href="#/atlas" class="tab" data-view="atlas">Atlas</a>
+        <a href="#/ciencia" class="tab" data-view="ciencia">Ciencia</a>
+      </nav>
+      <button class="btn btn-primary btn-sm nav-cta" data-view="vida" id="navCta">Analizar mi riesgo</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ INICIO ============ -->
+    <section id="view-home" class="view active" aria-label="Inicio">
+      <div class="hero">
+        <canvas id="dnaCanvas" aria-hidden="true"></canvas>
+        <div class="hero-grid-bg" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="hero-kicker">Genética · Epigenética · Ambiente · Datos reales</p>
+          <h1 class="hero-title">Tu genoma, descifrado.<br>Tu salud, <span class="grad">en tus manos.</span></h1>
+          <p class="hero-sub">Plataforma libre de inteligencia genómica para prevenir enfermedades no transmisibles. Cinco agentes científicos combinan 72 variantes GWAS reales, tu estilo de vida y tu entorno para decirte no solo <em>qué riesgo tienes</em>, sino <em>cuánto puedes cambiarlo</em>.</p>
+          <div class="hero-cta">
+            <button class="btn btn-primary btn-lg" data-view="genoma">Explorar mi panel genético</button>
+            <button class="btn btn-ghost btn-lg" data-view="vida">Calcular riesgo modificable</button>
+          </div>
+          <div class="hero-stats" id="heroStats">
+            <div class="hstat"><b data-stat="diseases">11</b><span>enfermedades</span></div>
+            <div class="hstat"><b data-stat="snps">72</b><span>variantes GWAS</span></div>
+            <div class="hstat"><b data-stat="foods">80</b><span>alimentos</span></div>
+            <div class="hstat"><b data-stat="regions">34</b><span>regiones</span></div>
+            <div class="hstat"><b>5</b><span>agentes IA</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <section class="block" aria-labelledby="agentsTitle">
+          <h2 class="section-title" id="agentsTitle">Tus agentes científicos</h2>
+          <p class="section-sub">Cada módulo de GENOMIND lo conduce un agente especializado con metodología publicada y auditable.</p>
+          <div class="grid agents-grid" id="agentsGrid"></div>
+        </section>
+
+        <section class="block" aria-labelledby="howTitle">
+          <h2 class="section-title" id="howTitle">Cómo funciona</h2>
+          <div class="grid steps-grid">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Carga tu panel genético</h3>
+              <p>Introduce tus genotipos de laboratorio o genera un perfil simulado realista. El agente <b>GENETIX</b> calcula tu puntuación de riesgo poligénico con 72 variantes asociadas a 11 enfermedades.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Suma ambiente y estilo de vida</h3>
+              <p>Tabaquismo, actividad, dieta, sueño, estrés, IMC y calidad del aire de tu región. <b>VITA</b> y <b>TERRA</b> aplican multiplicadores con evidencia citada y detectan interacciones gen-ambiente documentadas.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Recibe palancas accionables</h3>
+              <p>El sistema cuantifica tu <b>riesgo evitable</b> y genera recomendaciones priorizadas con su fuente científica: DPP, PREDIMED, INTERHEART, NLST. Tu genética explica parte de la historia; el resto la escribes tú.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mission" aria-labelledby="missionTitle">
+          <h2 id="missionTitle">Por qué GENOMIND existe</h2>
+          <div class="mission-grid">
+            <div class="mission-card">
+              <h3>Las ENT matan a 41 millones cada año</h3>
+              <p>Enfermedades no transmisibles como diabetes, cardiopatía y cáncer causan el 74% de las muertes globales. El <b>77% ocurre en países de ingresos bajos y medios</b>, donde la medicina genómica ni siquiera ha llegado.</p>
+            </div>
+            <div class="mission-card">
+              <h3>La genómica tiene un problema de equidad</h3>
+              <p>Más del 86% de los participantes de estudios GWAS son de ascendencia europea. GENOMIND visibiliza variantes multi-ancestría, documenta las limitaciones de transferibilidad y abre el código para que científicos de todo el mundo lo corrijan.</p>
+            </div>
+            <div class="mission-card">
+              <h3>La mejor ciencia debe caber en cualquier equipo</h3>
+              <p>Sin nubes caras ni credenciales: una API ligera, una base SQLite y un frontend que funciona incluso con mala conexión. <b>Instalable en 60 segundos</b> en una laptop modesta de una universidad pública.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ GENOMA ============ -->
+    <section id="view-genoma" class="view" aria-label="Panel genético">
+      <div class="wrap">
+        <div class="view-head">
+          <h2 class="section-title">Panel genético <span class="agent-tag">Agente GENETIX</span></h2>
+          <p class="section-sub">Puntuaciones de riesgo poligénico con variantes reales de consorcios GWAS (DIAGRAM, CARDIoGRAMplusC4D, IGAP, BCAC, PRACTICAL, GIANT, ICBP). Introduce genotipos o genera un perfil de demostración.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>1 · Elige enfermedades</h3>
+            <div class="chip-row" id="diseaseChips" role="group" aria-label="Enfermedades del panel"></div>
+          </div>
+          <div class="panel-head">
+            <h3>2 · Genotipos</h3>
+            <div class="btn-row">
+              <button class="btn btn-ghost btn-sm" id="btnRandomProfile">Perfil aleatorio</button>
+              <button class="btn btn-ghost btn-sm" id="btnEnrichedProfile">Perfil de alto riesgo</button>
+              <button class="btn btn-ghost btn-sm" id="btnClearGenotypes">Limpiar</button>
+              <button class="btn btn-primary" id="btnAnalyzePRS" disabled>Analizar panel</button>
+            </div>
+          </div>
+          <div class="geno-table-wrap" id="genoEditor" aria-live="polite">
+            <p class="muted">Selecciona al menos una enfermedad para editar genotipos.</p>
+          </div>
+        </div>
+
+        <div id="prsResults" class="results-grid" aria-live="polite"></div>
+        <p class="legal-note" id="prsDisclaimer" hidden></p>
+      </div>
+    </section>
+
+    <!-- ============ GEN × AMBIENTE ============ -->
+    <section id="view-vida" class="view" aria-label="Gen por ambiente">
+      <div class="wrap">
+        <div class="view-head">
+          <h2 class="section-title">Gen × Ambiente <span class="agent-tag">Agentes VITA + TERRA</span></h2>
+          <p class="section-sub">Aquí ocurre la revolución: tu riesgo no es solo tu ADN. El sistema cuantifica cuánto riesgo es modificable y genera tu escenario optimizado con recomendaciones citadas.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3 class="panel-title">Tu contexto</h3>
+            <form id="lifestyleForm" class="form-grid">
+              <label class="field"><span>Tabaquismo</span>
+                <select name="smoking">
+                  <option value="nunca">Nunca fumador</option>
+                  <option value="exfumador">Exfumador</option>
+                  <option value="fumador">Fumador actual</option>
+                </select>
+              </label>
+              <label class="field"><span>Actividad física</span>
+                <select name="activity">
+                  <option value="sedentario">Sedentario (<30 min/sem)</option>
+                  <option value="ligero" selected>Ligero (30-75 min/sem)</option>
+                  <option value="moderado">Moderado (75-150 min/sem)</option>
+                  <option value="intenso">Activo (≥150 min/sem)</option>
+                </select>
+              </label>
+              <label class="field"><span>Patrón alimentario</span>
+                <select name="diet">
+                  <option value="occidental">Occidental / ultraprocesado</option>
+                  <option value="mixta" selected>Mixta</option>
+                  <option value="prudente">Prudente</option>
+                  <option value="mediterranea">Mediterránea</option>
+                </select>
+              </label>
+              <label class="field"><span>Frutas y verduras (porciones/día)</span>
+                <input type="number" name="servings_fv" min="0" max="12" value="3">
+              </label>
+              <label class="field"><span>Alcohol</span>
+                <select name="alcohol">
+                  <option value="ninguno" selected>No consumo</option>
+                  <option value="moderado">Moderado (≤1 bebida/día)</option>
+                  <option value="alto">Alto (>2 bebidas/día)</option>
+                </select>
+              </label>
+              <label class="field"><span>Sueño</span>
+                <select name="sleep">
+                  <option value="corto">Corto (<6 h)</option>
+                  <option value="adecuado" selected>7-8 h</option>
+                  <option value="largo">Excesivo (>9 h)</option>
+                </select>
+              </label>
+              <label class="field"><span>Estrés crónico</span>
+                <select name="stress">
+                  <option value="bajo" selected>Bajo</option>
+                  <option value="medio">Medio</option>
+                  <option value="alto">Alto sostenido</option>
+                </select>
+              </label>
+              <label class="field"><span>Región</span>
+                <select name="region_id" id="regionSelect"><option value="">— Sin región —</option></select>
+              </label>
+              <label class="field"><span>Peso (kg)</span>
+                <input type="number" name="weight_kg" min="20" max="350" step="0.1" placeholder="70">
+              </label>
+              <label class="field"><span>Estatura (cm)</span>
+                <input type="number" name="height_cm" min="100" max="230" step="0.5" placeholder="170">
+              </label>
+              <div class="field field-actions">
+                <button type="submit" class="btn btn-primary">Analizar gen × ambiente</button>
+                <button type="button" class="btn btn-ghost btn-sm" id="btnSimGxESim">Con perfil genético aleatorio</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel" id="lifestyleResultPanel">
+            <h3 class="panel-title">Tu perfil de vida</h3>
+            <div id="lifestyleEmpty" class="empty-state">
+              <p>Completa el formulario y descubre tu <b>riesgo evitable</b>.</p>
+              <p class="muted small">Sin datos genéticos, se genera un perfil aleatorio para demostrar el motor.</p>
+            </div>
+            <div id="lifestyleResults" class="hidden">
+              <div class="radar-wrap"><div id="lifestyleRadar"></div></div>
+              <div id="bmiBadge" class="bmi-badge"></div>
+              <div id="gxSummary" class="gx-summary"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="gxDiseases" class="results-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ ALIMENTOS ============ -->
+    <section id="view-alimentos" class="view" aria-label="Comparador de alimentos">
+      <div class="wrap">
+        <div class="view-head">
+          <h2 class="section-title">Comparador de alimentos <span class="agent-tag">Agente NUTRIX</span></h2>
+          <p class="section-sub">80 alimentos con índice glucémico, sodio, costo y huella hídrica. Compara hasta 4 y descubre la <b>cesta vital</b>: la combinación más económica que cubre tus proteínas y fibra diarias.</p>
+        </div>
+
+        <div class="panel">
+          <div class="food-controls">
+            <input type="search" id="foodSearch" class="input" placeholder="Buscar alimento… (ej: frijol, sardina)" aria-label="Buscar alimento">
+            <select id="foodCategory" aria-label="Categoría"><option value="">Todas las categorías</option></select>
+            <select id="foodCost" aria-label="Costo máximo">
+              <option value="">Cualquier costo</option>
+              <option value="1">Muy barato</option>
+              <option value="2">Barato (≤2)</option>
+              <option value="3">Medio (≤3)</option>
+            </select>
+            <button class="btn btn-primary" id="btnBasket">Generar cesta vital</button>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="foodsTable">
+              <thead>
+                <tr>
+                  <th>Alimento</th><th>Categoría</th><th class="num">kcal</th><th class="num">Prot.</th>
+                  <th class="num">Fibra</th><th class="num">IG</th><th class="num">Sodio</th>
+                  <th class="num">Costo</th><th class="num">Salud</th><th class="chk">Comparar</th>
+                </tr>
+              </thead>
+              <tbody id="foodsBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="comparePanel" class="panel hidden"></div>
+      </div>
+    </section>
+
+    <!-- ============ ESTADÍSTICA ============ -->
+    <section id="view-estadistica" class="view" aria-label="Laboratorio estadístico">
+      <div class="wrap">
+        <div class="view-head">
+          <h2 class="section-title">Laboratorio estadístico <span class="agent-tag">Agente SIGMA</span></h2>
+          <p class="section-sub">El bioestadístico de bolsillo de cualquier grupo de investigación: pruebas paramétricas y no paramétricas, tamaño de muestra y exploración automática de CSV con salida en formato APA.</p>
+        </div>
+
+        <div class="sigma-tabs" id="sigmaTabs" role="tablist">
+          <button class="sigma-tab active" data-tool="summary" role="tab">Resumen</button>
+          <button class="sigma-tab" data-tool="ttest" role="tab">t-test</button>
+          <button class="sigma-tab" data-tool="mannwhitney" role="tab">Mann-Whitney</button>
+          <button class="sigma-tab" data-tool="chisq" role="tab">Chi-cuadrado</button>
+          <button class="sigma-tab" data-tool="or" role="tab">Odds Ratio</button>
+          <button class="sigma-tab" data-tool="correlation" role="tab">Correlación</button>
+          <button class="sigma-tab" data-tool="anova" role="tab">ANOVA</button>
+          <button class="sigma-tab" data-tool="power" role="tab">Tamaño muestral</button>
+          <button class="sigma-tab" data-tool="dataset" role="tab">Analizar CSV</button>
+        </div>
+
+        <div class="panel" id="sigmaPanel">
+          <div id="sigmaForm"></div>
+          <div id="sigmaResult" class="sigma-result" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ATLAS ============ -->
+    <section id="view-atlas" class="view" aria-label="Atlas ambiental">
+      <div class="wrap">
+        <div class="view-head">
+          <h2 class="section-title">Atlas ambiental <span class="agent-tag">Agente TERRA</span></h2>
+          <p class="section-sub">34 regiones con calidad del aire, espacios verdes, caminabilidad, acceso a salud y mortalidad por ENT. La contaminación es un factor de riesgo cardiovascular y respiratorio medible.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3 class="panel-title">PM2.5 vs esperanza de vida</h3>
+            <div id="atlasScatter" class="scatter-wrap"></div>
+            <p class="muted small">Cada punto es una región. La guía anual de la OMS es 5 µg/m³; Lima, Santiago, El Cairo o Delhi la superan hasta 18 veces.</p>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title">Detalles de la región</h3>
+            <select id="atlasRegionSelect" class="input" aria-label="Selecciona región"></select>
+            <div id="atlasDetail"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="table" id="atlasTable">
+              <thead><tr><th>Región</th><th>País</th><th class="num">PM2.5</th><th class="num">Verde %</th><th class="num">Caminable</th><th class="num">Salud</th><th class="num">Esperanza</th><th class="num">ENT/100k</th></tr></thead>
+              <tbody id="atlasBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CIENCIA ============ -->
+    <section id="view-ciencia" class="view" aria-label="Metodología">
+      <div class="wrap narrow">
+        <div class="view-head">
+          <h2 class="section-title">La ciencia detrás</h2>
+          <p class="section-sub">Metodología transparente, limitaciones honestas y fuentes verificables. La ciencia seria no esconde sus supuestos.</p>
+        </div>
+
+        <article class="panel">
+          <h3>Puntuación de riesgo poligénico (PRS)</h3>
+          <p>El agente GENETIX calcula una PRS estándar de suma ponderada:</p>
+          <div class="formula">PRS = Σ<sub>i</sub> ln(OR<sub>i</sub>) · dosis<sub>i</sub></div>
+          <p>donde <code>dosis</code> es el número de alelos de riesgo (0, 1 o 2). Para interpretar respecto a la población se normaliza con la esperanza y varianza bajo <b>equilibrio de Hardy-Weinberg</b>:</p>
+          <div class="formula">RR = exp(PRS − E[PRS]) &nbsp;&nbsp;·&nbsp;&nbsp; z = (PRS − E[PRS]) / √Var[PRS]</div>
+          <p>El percentil poblacional se obtiene de la CDF normal de z. Los odds ratios provienen de meta-análisis GWAS publicados y están redondeados.</p>
+        </article>
+
+        <article class="panel">
+          <h3>Modelo gen × ambiente</h3>
+          <p>VITA aplica multiplicadores ambientales con evidencia citada sobre el riesgo genético:</p>
+          <div class="formula">RR<sub>combinado</sub> = RR<sub>genético</sub> × Π m<sub>factor</sub></div>
+          <p>Es un <b>modelo multiplicativo simplificado</b>: los OR genéticos y los multiplicadores ambientales provienen de poblaciones distintas y su interacción exacta requiere modelos formales. Lo usamos con fines educativos para visualizar magnitudes. El <b>escenario optimizado</b> fija todos los factores modificables a su mejor valor (no fumador, 150+ min/semana, dieta mediterránea, sin alcohol, 7-8 h de sueño, estrés bajo, 5 porciones de frutas/verduras, PM2.5 ≤15) y cuantifica el riesgo evitable.</p>
+        </article>
+
+        <article class="panel">
+          <h3>Interacciones gen-ambiente documentadas</h3>
+          <ul class="plain-list">
+            <li><b>FTO × actividad física</b> — el ejercicio atenúa ~30% el efecto del alelo rs9939609 sobre el IMC (Kilpeläinen et al., PLoS Med 2011, N=218,166).</li>
+            <li><b>APOE ε4 × ejercicio</b> — portadores activos reducen el deterioro cognitivo ~40% frente a portadores sedentarios (Rovio et al. 2005).</li>
+            <li><b>CHRNA5 × tabaquismo</b> — las variantes de dependencia a la nicotina (rs16969968) apenas importan en quienes nunca fumaron: el tabaco causa el 80-90% del cáncer de pulmón (IARC).</li>
+            <li><b>TCF7L2 × estilo de vida</b> — el Diabetes Prevention Program redujo la progresión a diabetes 58% con intervención intensiva, eficaz en todos los genotipos (Knowler, NEJM 2002).</li>
+            <li><b>9p21 × tabaquismo</b> — interacción aditiva en riesgo coronario (CARDIoGRAMplusC4D).</li>
+            <li><b>APOL1 G1</b> — variante de gran efecto en ascendencia africana occidental: el caso de estudio central de por qué la genómica necesita equidad (CKDGen).</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h3>Limitaciones que debes conocer</h3>
+          <ul class="plain-list">
+            <li><b>Transferabilidad ancestral:</b> la mayoría de GWAS provienen de poblaciones europeas; los percentiles pueden no ser válidos en otras ancestrias. Lo decimos en voz alta y trabajamos por corregirlo con datos abiertos multi-ancestría.</li>
+            <li><b>Educación, no diagnóstico:</b> nada aquí sustituye pruebas clínicas certificadas ni consejería genética profesional.</li>
+            <li><b>Variantes comunes ≠ determinismo:</b> un percentil alto de PRS no significa destino; la fracción modificable suele ser mayor que la genética.</li>
+            <li><b>Datos regionales aproximados:</b> el atlas usa estimaciones públicas de la OMS/Banco Mundial redondeadas con fines comparativos.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h3>Referencias clave</h3>
+          <ul class="plain-list refs">
+            <li>Knowler WC et al. <i>Reduction in the incidence of type 2 diabetes with lifestyle intervention or metformin.</i> NEJM 2002;346:393-403.</li>
+            <li>Estruch R et al. <i>Primary prevention of cardiovascular disease with a Mediterranean diet.</i> NEJM 2013;368:1279-1290 (PREDIMED).</li>
+            <li>Yusuf S et al. <i>Effect of potentially modifiable risk factors associated with myocardial infarction.</i> Lancet 2004;364:937-952 (INTERHEART).</li>
+            <li>Kilpeläinen TO et al. <i>Physical activity attenuates the influence of FTO variants on obesity risk.</i> PLoS Med 2011;8:e1001116.</li>
+            <li>The National Lung Screening Trial Research Team. NEJM 2011;365:395-409.</li>
+            <li>Nikpay M et al. <i>Comprehensive mapping of genetic effects on blood lipids.</i> Nat Genet 2015 (CARDIoGRAMplusC4D).</li>
+            <li>Lambert JC et al. <i>Meta-analysis of 74,046 individuals identifies 11 new susceptibility loci for Alzheimer's disease.</i> Nat Genet 2013 (IGAP).</li>
+            <li>Michailidou K et al. <i>Genome-wide association analysis of more than 120,000 individuals identifies 15 new susceptibility loci for breast cancer.</i> Nat Genet 2015 (BCAC).</li>
+            <li>WHO Global Air Quality Guidelines 2021; IDF Diabetes Atlas 2021; WHO NCD Country Profiles.</li>
+            <li>Sudlow C et al. <i>UK Biobank: An open access resource.</i> PLoS Med 2015 — por un futuro de datos abiertos.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h3>Licencia y apertura</h3>
+          <p>GENOMIND es software libre (MIT): cópialo, corrígelo, enséñalo, llévalo a tu comunidad. Los datos están separados en JSON auditables para que cualquier científico pueda verificarlos, corregirlos y ampliarlos.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p><b>GENOMIND</b> — Inteligencia genómica abierta · v1.0.0</p>
+      <p class="muted small">Herramienta educativa y de investigación. No constituye consejo médico ni diagnóstico. Los datos GWAS provienen de literatura pública (ver sección Ciencia). Software libre MIT.</p>
+      <div class="footer-links">
+        <a href="#/ciencia">Metodología</a>
+        <a href="https://github.com/eduerking-crypto/proyecto-1" target="_blank" rel="noopener">Código fuente</a>
+        <a href="http://localhost:8000/docs" target="_blank" rel="noopener">API REST</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="modalRoot" class="modal-root hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close-modal aria-label="Cerrar">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
