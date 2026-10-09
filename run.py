@@ -15,7 +15,7 @@ from main import app  # noqa: E402 (requiere backend en sys.path)
 def main() -> None:
     url = "http://127.0.0.1:8000"
     print("=" * 56)
-    print("  GENOMIND — Inteligencia Genómica Abierta v1.0.0")
+    print("  GENOMIND — Inteligencia Genómica Abierta v1.0.1")
     print("=" * 56)
     print(f"  Interfaz:    {url}")
     print(f"  API REST:    {url}/docs")

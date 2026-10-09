@@ -45,4 +45,8 @@ const API = {
   compareFoods(ids) { return this.post("/api/foods/compare", { ids }); },
   basket(maxCost) { return this.post("/api/nutrition/basket", { max_cost: maxCost || null }); },
   stats(tool, payload) { return this.post(`/api/stats/${tool}`, payload); },
+  saveProfile(p) { return this.post("/api/profiles", p); },
+  listProfiles() { return this.get("/api/profiles"); },
+  getProfile(id) { return this.get(`/api/profiles/${id}`); },
+  deleteProfile(id) { return this.del(`/api/profiles/${id}`); },
 };

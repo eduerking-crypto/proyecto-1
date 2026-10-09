@@ -7,6 +7,7 @@ en la raíz.
 """
 import json
 import sqlite3
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
 
@@ -21,21 +22,23 @@ from database import DB_PATH, init_db
 BASE_DIR = Path(__file__).resolve().parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
 
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    init_db()
+    yield
+
+
 app = FastAPI(
     title="GENOMIND API",
     description="Plataforma de inteligencia genómica para prevenir enfermedades no transmisibles. "
                 "Agentes: GENETIX (genética), SIGMA (bioestadística), VITA (estilo de vida), "
                 "TERRA (ambiental), NUTRIX (nutrición).",
-    version="1.0.0",
+    version="1.0.1",
+    lifespan=lifespan,
 )
 app.add_middleware(
     CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],
 )
-
-
-@app.on_event("startup")
-def _startup() -> None:
-    init_db()
 
 
 def get_db() -> sqlite3.Connection:
@@ -176,7 +179,7 @@ def health():
         n_snps = db.execute("SELECT COUNT(*) FROM snps").fetchone()[0]
         n_foods = db.execute("SELECT COUNT(*) FROM foods").fetchone()[0]
         n_regions = db.execute("SELECT COUNT(*) FROM regions").fetchone()[0]
-    return {"status": "ok", "version": "1.0.0", "database": str(DB_PATH),
+    return {"status": "ok", "version": "1.0.1", "database": str(DB_PATH),
             "diseases": n_diseases, "snps": n_snps, "foods": n_foods, "regions": n_regions}
 
 

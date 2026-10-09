@@ -163,7 +163,7 @@ Los datos viven en JSON auditables en `backend/data/` — un pull request con me
 
 ## Aviso legal
 
-Herramienta **educativa y de investigación**. No diagnostica, no sustituye consejería genética ni consejo médico. Los datos GWAS provienen de literatura pública citada en la sección Ciencia de la aplicación. Ver [DISCLAIMER](#) en la sección Ciencia.
+Herramienta **educativa y de investigación**. No diagnostica, no sustituye consejería genética ni consejo médico. Los datos GWAS provienen de literatura pública citada en la sección Ciencia de la aplicación, donde se documentan también las limitaciones del modelo.
 
 ## Licencia
 

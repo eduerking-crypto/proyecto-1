@@ -24,7 +24,7 @@ def apa_p(p: float) -> str:
         return "p < .001"
     if p >= 0.999:
         return "p = .999"
-    return f"p = {p:.3f}".replace("0.", ".", 1) if p >= 0.005 else f"p = {p:.3f}"
+    return f"p = {p:.3f}".replace("0.", ".", 1)
 
 
 def summary(values) -> dict:

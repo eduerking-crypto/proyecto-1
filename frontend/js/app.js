@@ -233,7 +233,7 @@ async function renderGenoEditor() {
       rows.push(`<tr>
         <td><span class="gene-name">${esc(s.gene)}</span><br><span class="rsid">${s.rsid}</span></td>
         <td><span class="or-badge">OR ${s.odds_ratio}</span></td>
-        <td title="${esc(s.note || "")}">${s.note ? "ℹ️ " + esc(s.note.slice(0, 46)) + (s.note.length > 46 ? "…" : "") : "—"}</td>
+        <td title="${esc(s.note || "")}">${s.note ? esc(s.note.slice(0, 46)) + (s.note.length > 46 ? "…" : "") : "—"}</td>
         <td>
           <select data-rsid="${s.rsid}" data-risk="${s.risk_allele}" data-other="${s.other_allele}" aria-label="Genotipo de ${s.rsid}">
             <option value="">— sin dato —</option>
@@ -352,6 +352,7 @@ async function analyzeGX(useSimulated) {
   try {
     const res = await API.geneEnvironment(payload);
     state.lastGX = res;
+    state.lastGX._lifestyle = payload.lifestyle;
     renderGX(res);
     if (!$("#gxDiseases").scrollIntoView) return;
   } catch (e) { toast(e.message, true); }
@@ -407,10 +408,72 @@ function renderGX(res) {
       <h3 style="color:var(--emerald)">Informe completo</h3>
       <div class="btn-row">
         <button class="btn btn-ghost btn-sm" onclick="downloadJSON(state.lastGX, 'genomind_genxambiente.json')">Descargar JSON</button>
+        <button class="btn btn-ghost btn-sm" onclick="openSaveProfileModal()">Guardar perfil</button>
         <button class="btn btn-primary btn-sm" data-view="alimentos">Mejorar mi dieta →</button>
       </div>
     </div>`;
   $("#gxDiseases").insertAdjacentHTML("beforeend", `<p class="legal-note">${esc(res.disclaimer)}</p>`);
+}
+
+/* --------------------------- Perfiles --------------------------- */
+async function openSaveProfileModal() {
+  if (!state.lastGX) { toast("Primero ejecuta un análisis Gen × Ambiente.", true); return; }
+  openModal(`
+    <h3>Guardar perfil</h3>
+    <p class="muted small">Se guarda el genotipo, tu estilo de vida y el resultado del análisis en la base local SQLite.</p>
+    <label class="field" style="margin-top:12px"><span>Nombre del perfil</span>
+      <input id="profileNameInput" placeholder="Ej: Perfil demostrativo — sin datos reales"></label>
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn btn-primary" id="btnConfirmSave">Guardar</button>
+    </div>`);
+  $("#btnConfirmSave").addEventListener("click", async () => {
+    const name = $("#profileNameInput").value.trim();
+    if (!name) { toast("Escribe un nombre.", true); return; }
+    try {
+      await API.saveProfile({
+        name,
+        genotypes: state.lastGX.genotypes_used || {},
+        lifestyle: state.lastGX._lifestyle || {},
+        results: { diseases: state.lastGX.diseases || [] },
+      });
+      closeModal();
+      toast("Perfil guardado en la base de datos.");
+    } catch (e) { toast(e.message, true); }
+  });
+}
+
+async function openProfilesModal() {
+  let profiles = [];
+  try { profiles = await API.listProfiles(); } catch (e) { toast(e.message, true); return; }
+  const list = profiles.length
+    ? profiles.map((p) => `
+      <div class="basket-item">
+        <span><b>${esc(p.name)}</b><br><span class="cat">${esc(p.created_at)}</span></span>
+        <span class="btn-row">
+          <button class="btn btn-ghost btn-sm" onclick="loadProfile(${p.id})">Cargar</button>
+          <button class="btn btn-danger btn-sm" onclick="removeProfile(${p.id}, this)">Eliminar</button>
+        </span>
+      </div>`).join("")
+    : '<p class="muted">Sin perfiles guardados. Analiza en Gen × Ambiente y pulsa "Guardar perfil".</p>';
+  openModal(`<h3>Perfiles guardados</h3>${list}`);
+}
+
+async function loadProfile(id) {
+  try {
+    const p = await API.getProfile(id);
+    state.genotypes = p.genotypes || {};
+    closeModal();
+    await renderGenoEditor();
+    toast(`Perfil "${p.name}" cargado en el editor.`);
+  } catch (e) { toast(e.message, true); }
+}
+
+async function removeProfile(id, btn) {
+  try {
+    await API.deleteProfile(id);
+    btn.closest(".basket-item").remove();
+    toast("Perfil eliminado.");
+  } catch (e) { toast(e.message, true); }
 }
 
 /* --------------------------- Alimentos (NUTRIX) --------------------------- */
@@ -765,6 +828,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   $("#btnAnalyzePRS").addEventListener("click", analyzePRS);
   $("#btnSimGxESim").addEventListener("click", () => analyzeGX(true));
+  $("#btnLoadProfile").addEventListener("click", openProfilesModal);
 
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch(() => {});

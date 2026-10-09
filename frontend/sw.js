@@ -1,6 +1,6 @@
 /* GENOMIND — Service Worker: app shell cache-first para hardware modesto. */
 "use strict";
-const CACHE = "genomind-v1";
+const CACHE = "genomind-v1.1";
 const SHELL = [
   "/", "/index.html", "/css/styles.css", "/js/api.js", "/js/charts.js", "/js/app.js",
   "/assets/logo.svg", "/manifest.json",
